@@ -10,7 +10,7 @@ interface AppUpdate {
 
 const UPDATE_SUBREDDIT = "novrixapps";
 const UPDATE_WIKI_PAGE = "upgrade-notifier";
-const CURRENT_APP_VERSION = "1.1.1";
+const CURRENT_APP_VERSION = "0.0.1";
 
 export async function getNewVersionInfo(appSlug: string): Promise<AppUpdate | undefined> {
     let wikiPage;
@@ -57,7 +57,7 @@ export async function checkForUpdates() {
         }
         const subreddit = await reddit.getCurrentSubreddit();
         const appUser = await reddit.getAppUser();
-        const appSlug = appUser?.username ?? "relay-app";
+        const appSlug = appUser?.username ?? "community-voices";
 
         const update = await getNewVersionInfo(appSlug);
         if (!update) return;
