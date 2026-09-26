@@ -12,12 +12,10 @@ export const handleCommentCreate = async (c: Context) => {
     const authorName = event.author.name;
     const commentBody = event.comment.body || "";
 
-    // 1. TOP-LEVEL FILTER: Ignore nested replies completely
     if (!parentId.startsWith('t3_')) {
       return c.json({ success: true });
     }
 
-    // 2. FETCH SETTINGS
     const pinnedSummaryEnabled = await settings.get<boolean>('pinnedSummary') ?? true;
     if (!pinnedSummaryEnabled) return c.json({ success: true });
 
@@ -34,14 +32,12 @@ export const handleCommentCreate = async (c: Context) => {
     const vipFlairs = rawVipFlairs.split(',').map(f => f.trim().toLowerCase()).filter(Boolean);
     const vipUsernames = rawVipUsernames.split(',').map(u => u.trim().toLowerCase()).filter(Boolean);
 
-    // 3. VIP IDENTIFICATION
     let isVip = false;
     
-    // Check Username
     if (vipUsernames.includes(authorName.toLowerCase())) {
       isVip = true;
     } else if (vipFlairs.length > 0) {
-      // Fetch comment strictly to check author's flair
+
       const commentObj = await reddit.getCommentById(`t1_${commentId.replace(/^t1_/, '')}` as `t1_${string}`);
       const authorFlair = commentObj.authorFlair?.text?.toLowerCase() || "";
       if (authorFlair && vipFlairs.some(flair => authorFlair.includes(flair))) {
@@ -51,12 +47,10 @@ export const handleCommentCreate = async (c: Context) => {
 
     if (!isVip) return c.json({ success: true });
 
-    // 4. AGGREGATE VIP DATA IN REDIS
     const dataRedisKey = `vip_data_${postId}`;
     const existingData = await redis.get(dataRedisKey);
     let vipComments: Array<{ author: string, body: string, url: string }> = existingData ? JSON.parse(existingData) : [];
 
-    // Truncate comment body for the blockquote (e.g., 250 chars max)
     let truncatedBody = commentBody.replace(/[\n\r]/g, " ").trim();
     if (truncatedBody.length > 250) truncatedBody = truncatedBody.substring(0, 247) + "...";
 
@@ -68,16 +62,14 @@ export const handleCommentCreate = async (c: Context) => {
 
     await redis.set(dataRedisKey, JSON.stringify(vipComments));
 
-    // 5. BUILD THE PINNED SUMMARY COMMENT
     const totalComments = vipComments.length;
     let summaryText = `**There are ${totalComments} comments from ${vipDescriptor} in this post:**\n\n---\n\n`;
 
-    // Limit blockquotes to the first 5
     const displayLimit = 5;
     const commentsToDisplay = vipComments.slice(0, displayLimit);
 
     commentsToDisplay.forEach(c => {
-      summaryText += `> [u/${c.author} commented:](${c.url}) ${c.body}\n\n`;
+      summaryText += `[u/${c.author} commented:](${c.url})\n> ${c.body}\n\n`;
     });
 
     if (totalComments > displayLimit) {
@@ -89,33 +81,24 @@ export const handleCommentCreate = async (c: Context) => {
 
     summaryText += `\n---\n*I am a bot, and this action was performed automatically.*`;
 
-    // 6. POST OR EDIT THE STICKY COMMENT
     const pinnedIdKey = `pinned_summary_id_${postId}`;
     const existingPinnedId = await redis.get(pinnedIdKey);
 
     if (existingPinnedId) {
-      // Edit existing comment
+
       const pinnedComment = await reddit.getCommentById(`t1_${existingPinnedId.replace(/^t1_/, '')}` as `t1_${string}`);
       await pinnedComment.edit({ text: summaryText });
     } else {
-      // Create new pinned comment
+
       const newPinnedComment = await reddit.submitComment({
         id: `t3_${postId.replace(/^t3_/, '')}` as `t3_${string}`,
         text: summaryText
       });
       await newPinnedComment.distinguish(true);
       
-      // We wrap the sticky command in a try/catch as standard practice
-      try {
-        await (newPinnedComment as any).sticky();
-      } catch (e) {
-        console.error("Failed to sticky the summary comment", e);
-      }
-      
       await redis.set(pinnedIdKey, newPinnedComment.id);
     }
 
-    // 7. POST FLAIR AUTOMATION
     const setFlairEnabled = await settings.get<boolean>('setFlairAfterCommenting') ?? false;
     if (setFlairEnabled) {
       const targetFlairText = await settings.get<string>('vipCommentPostFlairText') ?? '';

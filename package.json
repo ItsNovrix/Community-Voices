@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "community-voices",
-  "version": "0.0.2",
+  "version": "0.0.8",
   "license": "BSD-3-Clause",
   "type": "module",
   "scripts": {
@@ -14,17 +14,14 @@
     "@devvit/public-api": "^0.14.5",
     "@devvit/shared-types": "^0.14.5",
     "@devvit/start": "0.14.5",
-    "@types/json2md": "^1.5.4",
-    "@types/semver": "^7.8.0",
     "devvit": "^0.14.5",
     "typescript": "5.8.3",
     "vite": "^8.0.16"
   },
   "dependencies": {
-    "@devvit/web": "^0.14.5",
+    "@devvit/web": "0.14.5",
     "@hono/node-server": "^2.0.4",
-    "devvit-helpers": "^0.10.0",
-    "hono": "^4.12.33",
+    "hono": "^4.12.23",
     "json2md": "^2.0.3",
     "semver": "^7.8.5"
   }

@@ -45,9 +45,9 @@ If you have any feedback/suggestions or need support, visit [r/NovrixApps](https
 
 ## 🚀 Changelog
 
-**Latest Version:** v0.0.2
+**Latest Version:** v0.0.8
 
-* Resolved issue with install and upgrade triggers.
+* Fresh upload of app code due to install trigger issues.
 
 For the full changelog, please visit the Community Voices [GitHub](https://github.com/ItsNovrix/Community-Voices).
 

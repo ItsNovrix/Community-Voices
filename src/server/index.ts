@@ -1,7 +1,6 @@
 import { Hono } from 'hono';
 import { serve } from '@hono/node-server';
-import { createServer, getServerPort, reddit, redis, settings } from '@devvit/web/server';
-import type { OnPostCreateRequest, OnAppInstallRequest, OnAppUpgradeRequest } from '@devvit/web/shared';
+import { createServer, getServerPort } from '@devvit/web/server';
 
 // --- IMPORT TRIGGERS ---
 import { handleAppInstall } from './triggers/install.js';
