@@ -2,6 +2,14 @@
 
 ---
 
+## v0.0.9
+
+* Updated app to latest Devvit version.
+* Fixed formatting issue with summary comment text.
+* Added option include comment replies in pinned summary comment.
+* Added option to exclude posts based on post flair.
+* Restructured app settings.
+
 ## v0.0.8
 
 * Fresh upload of app code due to install trigger issues.

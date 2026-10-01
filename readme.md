@@ -45,9 +45,13 @@ If you have any feedback/suggestions or need support, visit [r/NovrixApps](https
 
 ## 🚀 Changelog
 
-**Latest Version:** v0.0.8
+**Latest Version:** v0.0.9
 
-* Fresh upload of app code due to install trigger issues.
+* Updated app to latest Devvit version.
+* Fixed formatting issue with summary comment text.
+* Added option include comment replies in pinned summary comment.
+* Added option to exclude posts based on post flair.
+* Restructured app settings.
 
 For the full changelog, please visit the Community Voices [GitHub](https://github.com/ItsNovrix/Community-Voices).
 

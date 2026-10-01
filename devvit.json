@@ -26,69 +26,103 @@
     "icon": "assets/icon.png"
   },
     "settings": {
-    "subreddit": {
+  "subreddit": {
+    "vip-identification": {
+      "type": "group",
+      "label": "VIP Identification",
+      "helpText": "Configure how Community Voices identifies VIP users.",
+      "fields": {
+        "vipFlairs": {
+          "type": "string",
+          "label": "VIP User Flairs",
+          "helpText": "Comma-separated list of flairs that trigger the bot (e.g., Pilot, Developer, Admin)"
+        },
+        "vipUsernames": {
+          "type": "string",
+          "label": "VIP Usernames",
+          "helpText": "Comma-separated list of specific usernames to treat as VIPs (no u/ needed)"
+        },
         "vipDescriptor": {
-        "type": "string",
-        "label": "VIP Descriptor Text",
-        "helpText": "Define how your VIP users are described in your community. This is used in the header of pinned summary comments: 'There are X comments from [Descriptor] in this post'",
-        "defaultValue": "VIP users"
-      },
-      "vipFlairs": {
-        "type": "string",
-        "label": "VIP User Flairs",
-        "helpText": "Comma-separated list of flairs that trigger the bot (e.g., Pilot, Developer, Admin)"
-      },
-      "vipUsernames": {
-        "type": "string",
-        "label": "VIP Usernames",
-        "helpText": "Comma-separated list of specific usernames to treat as VIPs (no u/ needed)"
-      },
-      "ignoreCommand": {
-        "type": "string",
-        "label": "Ignore Command",
-        "helpText": "If a VIP starts their comment with this command, the bot will skip it.",
-        "defaultValue": "!ignore"
-      },
-      "pinnedSummary": {
-        "type": "boolean",
-        "label": "Pinned Summary Comment",
-        "helpText": "Enable to add a pinned comment summarizing all comments made by VIP users.",
-        "defaultValue": true
-      },
-      "setFlairAfterCommenting": {
-        "type": "boolean",
-        "label": "Update Post Flair on Comments?",
-        "helpText": "Enable to automatically update the post flair after a VIP user comments.",
-        "defaultValue": false
-      },
-      "vipCommentPostFlairText": {
-        "type": "string",
-        "label": "Post Flair to Use",
-        "helpText": "Enter the post flair to apply after a VIP user comments."
-      },
-      "setFlairAfterPosting": {
-        "type": "boolean",
-        "label": "Update Post Flair on VIP Posts?",
-        "helpText": "Enable to automatically update the post flair after a VIP user submits a post.",
-        "defaultValue": false
-      },
-      "vipPostFlairText": {
-        "type": "string",
-        "label": "Post Flair to Use",
-        "helpText": "Enter the post flair to apply after a VIP user submits a post."
-      },
-      "autoStickyVipPosts": {
-        "type": "select",
-        "label": "Auto-Sticky Posts Made by VIP Users?",
-        "options": [
-          { "label": "Do Not Sticky", "value": "none" },
-          { "label": "Slot 1", "value": "1" },
-          { "label": "Slot 2", "value": "2" }
-        ],
-        "defaultValue": "none"
+          "type": "string",
+          "label": "VIP Descriptor Text",
+          "helpText": "Define how VIP users are described in your community. This is used in the header of pinned summary comments: 'There are X comments from [Descriptor] in this post'",
+          "defaultValue": "VIP users"
+        }
+      }
+    },
+
+    "vip-comments": {
+      "type": "group",
+      "label": "VIP Comments",
+      "helpText": "Configure how Community Voices handles comments made by VIP users.",
+      "fields": {
+        "pinnedSummary": {
+          "type": "boolean",
+          "label": "Pinned Summary Comment",
+          "helpText": "Enable to add a pinned comment summarizing all comments made by VIP users.",
+          "defaultValue": true
+        },
+        "includeCommentReplies": {
+          "type": "boolean",
+          "label": "Include Comment Replies?",
+          "helpText": "Enable to include replies to other comments when counting comments made by VIP users.",
+          "defaultValue": false
+        },
+        "setFlairAfterCommenting": {
+          "type": "boolean",
+          "label": "Update Post Flair on Comments?",
+          "helpText": "Enable to automatically update the post flair after a VIP user comments.",
+          "defaultValue": false
+        },
+        "vipCommentPostFlairText": {
+          "type": "string",
+          "label": "Post Flair to Use",
+          "helpText": "Enter the post flair to apply after a VIP user comments."
+        },
+        "ignoreCommand": {
+          "type": "string",
+          "label": "Ignore Command",
+          "helpText": "If a VIP starts their comment with this command, the bot will skip it.",
+          "defaultValue": "!ignore"
+        },
+        "ignoredPostFlairs": {
+          "type": "string",
+          "label": "Ignored Post Flairs",
+          "helpText": "Comma-separated list of post flairs to exclude. Exact, case-insensitive matches are required."
+        }
+      }
+    },
+
+    "vip-posts": {
+      "type": "group",
+      "label": "VIP Posts",
+      "helpText": "Configure how Community Voices handles posts submitted by VIP users.",
+      "fields": {
+        "setFlairAfterPosting": {
+          "type": "boolean",
+          "label": "Update Post Flair on VIP Posts?",
+          "helpText": "Enable to automatically update the post flair after a VIP user submits a post.",
+          "defaultValue": false
+        },
+        "vipPostFlairText": {
+          "type": "string",
+          "label": "Post Flair to Use",
+          "helpText": "Enter the post flair to apply after a VIP user submits a post."
+        },
+        "autoStickyVipPosts": {
+          "type": "select",
+          "label": "Auto-Sticky Posts Made by VIP Users?",
+          "options": [
+            { "label": "Do Not Sticky", "value": "none" },
+            { "label": "Slot 1", "value": "1" },
+            { "label": "Slot 2", "value": "2" }
+          ],
+          "defaultValue": "none"
+        }
       }
     }
-  },
+  }
+},
   "dev": {
     "subreddit": "NovrixLabs"
   }

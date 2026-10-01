@@ -4,16 +4,35 @@ import { reddit, redis, settings } from "@devvit/web/server";
 export const handleCommentCreate = async (c: Context) => {
   try {
     const event = await c.req.json();
-    if (!event.comment || !event.author?.name || !event.post?.id) return c.json({ success: true });
+
+    if (!event.comment || !event.author?.name || !event.post?.id) {
+      return c.json({ success: true });
+    }
 
     const commentId = event.comment.id;
     const postId = event.post.id;
     const parentId = event.comment.parentId;
     const authorName = event.author.name;
     const commentBody = event.comment.body || "";
+    const includeReplies = await settings.get<boolean>('includeCommentReplies') ?? false;
 
-    if (!parentId.startsWith('t3_')) {
+    if (!includeReplies && !parentId.startsWith('t3_')) {
       return c.json({ success: true });
+    }
+
+    const rawIgnoredPostFlairs = await settings.get<string>('ignoredPostFlairs') ?? '';
+    const ignoredPostFlairs = rawIgnoredPostFlairs
+      .split(',')
+      .map(flair => flair.trim().toLowerCase())
+      .filter(Boolean);
+
+    if (ignoredPostFlairs.length > 0) {
+      const postFlair = event.post.linkFlair?.text?.trim().toLowerCase() || '';
+
+      if (postFlair && ignoredPostFlairs.includes(postFlair)) {
+        console.log(`[Skip] Post flair "${postFlair}" is configured as an ignored flair.`);
+        return c.json({ success: true });
+      }
     }
 
     const pinnedSummaryEnabled = await settings.get<boolean>('pinnedSummary') ?? true;
@@ -63,7 +82,7 @@ export const handleCommentCreate = async (c: Context) => {
     await redis.set(dataRedisKey, JSON.stringify(vipComments));
 
     const totalComments = vipComments.length;
-    let summaryText = `**There are ${totalComments} comments from ${vipDescriptor} in this post:**\n\n---\n\n`;
+    let summaryText = `There are ${totalComments} comments from ${vipDescriptor} in this post:\n\n---\n\n`;
 
     const displayLimit = 5;
     const commentsToDisplay = vipComments.slice(0, displayLimit);
