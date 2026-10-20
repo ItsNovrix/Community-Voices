@@ -32,7 +32,8 @@ export const handleAppUpgrade = async (c: Context) => {
     /* FOOTER */
     firstMsg += `[Terms & Conditions](https://www.reddit.com/r/NovrixApps/wiki/community-voices/terms-and-conditions) | `;
     firstMsg += `[Privacy Policy](https://www.reddit.com/r/NovrixApps/wiki/community-voices/privacy-policy/) | `;
-    firstMsg += `[Contact](https://www.reddit.com/r/NovrixApps/)\n\n`;
+    firstMsg += `[Feedback/Support](https://reddit.com/r/NovrixApps) | `,
+	  firstMsg += `[Novrix Labs Trello Board](https://trello.com/b/1TdocvRg/novrix-labs)\n\n`;
 
     await reddit.sendPrivateMessageAsSubreddit({
       fromSubredditName: subreddit.name,

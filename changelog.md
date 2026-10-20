@@ -2,6 +2,12 @@
 
 ---
 
+## v0.0.10
+
+* Updated app to latest Devvit version.
+
+---
+
 ## v0.0.9
 
 * Updated app to latest Devvit version.
