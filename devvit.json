@@ -60,7 +60,7 @@
           "type": "boolean",
           "label": "Pinned Summary Comment",
           "helpText": "Enable to add a pinned comment summarizing all comments made by VIP users.",
-          "defaultValue": true
+          "defaultValue": false
         },
         "includeCommentReplies": {
           "type": "boolean",

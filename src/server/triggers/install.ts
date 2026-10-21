@@ -16,22 +16,27 @@ export const handleAppInstall = async (c: Context) => {
 
     /* QUICK START */
     firstMsg += `**How to use Community Voices:**\n\n\n`;
-    firstMsg += `1) Step one.\n`;
-    firstMsg += `2) Step two.\n`;
-    firstMsg += `3) Step three — done!\n\n`;
-    firstMsg += `*Note:* Add any important notes here!n\n`;
+    firstMsg += `1) Set user flairs/usernames that will be used to identify users the app should target.\n`;
+    firstMsg += `2) Set the VIP descriptor to define how VIP users are described in your community.\n`;
+    firstMsg += `3) Configure how the app will react when VIP users post/comment.\n\n`;
+    firstMsg += `4) Done!\n\n`;
+    firstMsg += `*Note:* You can optionally set a custom command users can include in their posts/comments to have the bot ignore them.\n`;
 
     /* DEFAULTS & NOTIFICATIONS */
-    firstMsg += `**Defaults:**\n\n\n`;
-    firstMsg += `- Info line 1\n`;
-    firstMsg += `- Info line 2\n`;
-    firstMsg += `- Info line 3\n\n`;
+    firstMsg += `**Defaults & notifications:**\n\n\n`;
+    firstMsg += `- An **internal mod note** is added automatically after all actions performed by Comment Daemon\n`;
+    firstMsg += `- **Pinned summary comments are OFF by default** but can easily be enabled in the app settings.\n`;
+    firstMsg += `- **Comment replies targeting is OFF by default** but can easily be enabled in the app settings.\n`;
+    firstMsg += `- The default ignore command is **!ignore**. You can customize this command in the app settings.\n\n`;
 
     /* FEATURES */
     firstMsg += `**Features you can use today:**\n\n\n`;
-    firstMsg += `- Feature 1\n`;
-    firstMsg += `- Feature 2\n`;
-    firstMsg += `- Feature 3\n\n`;
+    firstMsg += `- Target VIP users by **user flair** (comma-separated list).\n`;
+    firstMsg += `- Target VIP users by **username** (comma-separated list).\n`;
+    firstMsg += `- Pin a summary comment on posts summarizing all comments made by VIP users.\n`;
+    firstMsg += `- Include replies to other comments in pinned comment summaries.\n`;
+    firstMsg += `- Update post flair when a VIP user comments on a post.\n`;
+    firstMsg += `- Auto-sticky posts made by VIP users.\n\n`;
 
     /* CONFIG LINKS */
     firstMsg += `**Configure now:** manage your **Community Voices** settings here → `;

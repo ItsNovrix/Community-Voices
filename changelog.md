@@ -1,5 +1,10 @@
 # 🚀 Changelog for Community Voices
 
+## v0.0.11
+
+* Updated the upgrade notifier to reformat upgrade message and resolve app name errors.
+* Updated app install and update triggers.
+
 ---
 
 ## v0.0.10
@@ -15,6 +20,8 @@
 * Added option include comment replies in pinned summary comment.
 * Added option to exclude posts based on post flair.
 * Restructured app settings.
+
+---
 
 ## v0.0.8
 
@@ -32,13 +39,19 @@
 
 * Troubleshooting triggers due to app install error.
 
+---
+
 ## v0.0.5
 
 * Troubleshooting triggers due to app install error.
 
+---
+
 ## v0.0.4
 
 * Updated imports.
+
+---
 
 ## v0.0.3
 

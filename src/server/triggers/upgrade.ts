@@ -16,15 +16,16 @@ export const handleAppUpgrade = async (c: Context) => {
 
     /* WHAT'S NEW */
     firstMsg += `**What's new (highlights):**\n\n\n`;
-    firstMsg += `- Update 1\n`;
-    firstMsg += `- Update 2\n`;
-    firstMsg += `- Update 3\n\n`;
+    firstMsg += `- **Upgrade Notifier Update** — Updated the upgrade notifier to reformat upgrade message and resolve app name errors.\n`;
+    firstMsg += `- **Devvit Version Update** — Comment Daemon has been updated to the latest Devvit release (0.15.0).\n`;
+    firstMsg += `- **App Triggers Update** — Updated app install and update triggers.\n\n`;
 
     /* REMINDERS */
     firstMsg += `**Good to know / reminders:**\n\n\n`;
-    firstMsg += `- Reminder 1\n\n`;
-    firstMsg += `- Reminder 2\n\n`;
-    firstMsg += `- Reminder 3\n\n`;
+    firstMsg += `- An **internal mod note** is added automatically after all actions performed by Comment Daemon\n`;
+    firstMsg += `- **Pinned summary comments are OFF by default** but can easily be enabled in the app settings.\n`;
+    firstMsg += `- **Comment replies targeting is OFF by default** but can easily be enabled in the app settings.\n`;
+    firstMsg += `- The default ignore command is **!ignore**. You can customize this command in the app settings.\n\n`;
 
     /* CONFIG LINKS */
     firstMsg += `**Configure now:** manage **Community Voices** settings here → [Community Voices settings](https://developers.reddit.com/r/${subreddit.name}/apps/community-voices)\n\n\n`;
