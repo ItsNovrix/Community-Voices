@@ -16,8 +16,7 @@ export const handleAppUpgrade = async (c: Context) => {
 
     /* WHAT'S NEW */
     firstMsg += `**What's new (highlights):**\n\n\n`;
-    firstMsg += `- **Upgrade Notifier Update** — Updated the upgrade notifier to reformat upgrade message and resolve app name errors.\n`;
-    firstMsg += `- **Devvit Version Update** — Comment Daemon has been updated to the latest Devvit release (0.15.0).\n`;
+    firstMsg += `- **Devvit Version Update** — Community Voices has been updated to the latest Devvit release (0.15.3).\n`;
     firstMsg += `- **App Triggers Update** — Updated app install and update triggers.\n\n`;
 
     /* REMINDERS */

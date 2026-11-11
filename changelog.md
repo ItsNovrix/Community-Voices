@@ -1,5 +1,11 @@
 # 🚀 Changelog for Community Voices
 
+## v0.0.12
+
+* Updated app to latest Devvit release (0.15.3)
+
+---
+
 ## v0.0.11
 
 * Updated the upgrade notifier to reformat upgrade message and resolve app name errors.

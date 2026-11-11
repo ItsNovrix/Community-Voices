@@ -51,10 +51,9 @@ Track upcoming features, planned updates, and known issues for all my Devvit app
 
 ## 🚀 Changelog
 
-**Latest Version:** v0.0.11
+**Latest Version:** v0.0.12
 
-* Updated the upgrade notifier to reformat upgrade message and resolve app name errors.
-* Updated app install and update triggers.
+* Updated app to latest Devvit release (0.15.3)
 
 For the full changelog, please visit the Community Voices [GitHub](https://github.com/ItsNovrix/Community-Voices).
 
